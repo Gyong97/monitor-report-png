@@ -1,0 +1,6 @@
+{
+  "version": "1.0.0",
+  "releaseDate": "2026-04-01",
+  "releaseNotes": "최초 분리 버전 + 자동 업데이트 체크",
+  "downloadUrl": "https://github.com/{user}/{repo}/releases/latest"
+}

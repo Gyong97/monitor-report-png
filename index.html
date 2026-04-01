@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>운영 반영 모니터링 이미지 생성기</title>
+
+  <!-- 스타일 -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- 외부 라이브러리 -->
+  <script src="js/html-to-image.min.js"></script>
+</head>
+
+<body>
+
+<h1>운영 반영 모니터링 결과</h1>
+
+<div class="section">
+  프로세스명:
+  <input id="processName" placeholder="예: 승인/정산 로직 개선" oninput="saveState()" />
+</div>
+
+<div class="section">
+  <b>프리셋</b>
+  <button onclick="exportPreset()">내보내기</button>
+  <button onclick="importPreset()">가져오기</button>
+</div>
+
+<div class="section">
+  <label>
+    <input type="checkbox" id="hideEmptyService" onchange="renderTable()" />
+    빈 서비스 항목 제외
+  </label>
+  <label style="margin-left:12px">
+    <input type="checkbox" id="hideEmptyCheck" onchange="renderTable()" />
+    빈 체크 항목 제외
+  </label>
+</div>
+
+<div class="section">
+  <b>초기화</b>
+  <button class="danger" onclick="resetAll()">모두 초기화</button>
+  <button onclick="resetServices()">서비스 초기화</button>
+  <button onclick="resetChecks()">체크 항목 초기화</button>
+</div>
+
+<button id="toggleEditBtn" onclick="toggleEditMode()">
+  ✏ 편집 모드
+</button>
+
+<div id="edit-panel" class="edit-panel">
+  <div class="section">
+    <b>서비스</b>
+    <button onclick="addService()">＋</button>
+    <div id="services"></div>
+  </div>
+
+  <div class="section">
+    <b>체크 항목 (변경 적용 로직)</b>
+    <button onclick="addCheck()">＋</button>
+    <div id="checks"></div>
+  </div>
+</div>
+
+<div class="section">
+  <button onclick="renderTable()">미리보기 갱신</button>
+  <button onclick="savePNG()">PNG 저장</button>
+  <div class="note">
+    ※ PNG 저장 시에는 빈 서비스 / 빈 체크 항목이 자동으로 제외됩니다.
+  </div>
+</div>
+
+<div class="section">
+  <b>서비스 정상 여부</b>
+  <button onclick="addServiceHealthRow()">＋ 서버 추가</button>
+  <button onclick="resetServiceHealthRows()">초기화</button>
+</div>
+
+<div id="preview"></div>
+
+<!-- 앱 스크립트 (순서 중요!) -->
+<script src="js/app.js"></script>
+<script src="js/preset.js"></script>
+<script src="js/export-png.js"></script>
+<script src="js/version-checker.js"></script>
+
+</body>
+</html>

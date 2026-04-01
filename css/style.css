@@ -1,0 +1,366 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 16px;
+}
+h1 { margin-bottom: 8px; }
+input, button {
+  padding: 4px;
+  margin: 2px;
+}
+button { cursor: pointer; }
+.section { margin-bottom: 14px; }
+
+/* Drag UI */
+.drag-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.drag-handle {
+  cursor: grab;
+  user-select: none;
+  font-size: 18px;
+}
+.remove-btn {
+  color: red;
+  cursor: pointer;
+}
+
+/* Buttons */
+button.danger {
+  background: #ffecec;
+  border: 1px solid #ffb3b3;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+th:first-child,
+td:first-child {
+  width: 220px;
+}
+
+th.verify-col,
+td.verify-col {
+  width: 180px;
+}
+
+td.verify-col {
+  text-align: center;
+  vertical-align: middle;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+td.verify-col:hover {
+  background: #fffbe6;
+}
+
+.verify-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.verify-select,
+.verify-input {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  resize: none;
+  min-height: 40px;
+  max-height: 120px;
+  overflow-y: auto;
+  line-height: 1.3;
+}
+
+.verify-input[disabled] {
+  background: #f5f5f5;
+  color: #999;
+}
+.verify-text {
+  white-space: pre-line;
+  display: block;
+  text-align: center;
+}
+
+th.service-header,
+td.service-cell,
+th.add-col,
+td.add-col {
+  width: calc((100% - 220px - 180px) / var(--svc-cols));
+}
+
+th, td {
+  border: 1px solid #999;
+  padding: 6px 10px;
+  text-align: center;
+  font-size: 12px;
+  word-break: break-word;
+}
+th {
+  background: #f0f0f0;
+  word-break: keep-all;
+}
+.hide-for-export {
+  display: none !important;
+}
+th {
+  cursor: default;
+}
+th.service-header {
+  text-align: center;
+  vertical-align: middle;
+  padding: 4px 6px;
+  overflow: hidden;
+  height: 48px;
+}
+
+th.service-header .service-header-label {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  line-height: 1.2;
+  max-height: calc(1.2em * 2);
+  text-align: center;
+  margin: 0 auto;
+}
+
+th:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+table tr:nth-child(even) td:not(.status-ok):not(.status-na) {
+  background-color: #fafafa;
+}
+
+#preview {
+  display: block;
+  padding: 10px;
+  width: 1200px;
+  border: 2px solid #000;
+  background: white;
+  user-select: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.png-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.status-ok { background: #c6efce; }
+.status-na { color: #bbb; }
+
+td.clickable { cursor: pointer; }
+td.clickable:hover { background: #e8f5e9; }
+
+tr.section-header td {
+  background: #f0f0f0;
+  color: #000;
+  font-weight: bold;
+  text-align: left;
+  padding: 6px 10px;
+  border-top: 3px solid #000;
+  border-bottom: 2px solid #999;
+}
+
+tr.section-end td {
+  border-bottom: 3px solid #000;
+}
+
+tr.summary-row td {
+  background: #e9f0ff;
+  font-weight: bold;
+}
+.inline-edit {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: inherit;
+  padding: 2px 4px;
+}
+
+.check-name:hover,
+.service-header:hover {
+  background: #f5f7fa;
+  cursor: pointer;
+}
+
+.check-name:hover::after,
+.service-header:hover::after {
+  content: " ✎";
+  color: #999;
+  font-size: 0.85em;
+}
+.add-col button,
+.add-row button {
+  background: none;
+  border: 1px dashed #bbb;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #555;
+}
+
+.add-col button:hover,
+.add-row button:hover {
+  background: #f5f7fa;
+}
+.cell-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cell-text {
+  flex: 1;
+}
+
+.cell-delete {
+  display: none;
+  margin-left: 6px;
+  color: #999;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.service-header:hover .cell-delete,
+.check-name:hover .cell-delete {
+  display: inline;
+}
+
+.cell-delete:hover {
+  color: #d33;
+}
+.edit-panel {
+  display: none;
+  margin-bottom: 12px;
+}
+
+/* ===== [Phase 2] 업데이트 배너 ===== */
+#update-banner {
+  background: linear-gradient(135deg, #e8f4fd 0%, #d1ecf9 100%);
+  border: 1px solid #b8daff;
+  border-left: 5px solid #007bff;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.update-banner-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.update-banner-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.update-banner-text {
+  flex: 1;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.update-banner-text strong {
+  font-size: 14px;
+  color: #0056b3;
+}
+
+.update-banner-date {
+  margin-left: 8px;
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.update-banner-notes {
+  margin: 4px 0 0;
+  color: #333;
+}
+
+.update-banner-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.update-btn {
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.update-btn-download {
+  background: #007bff;
+  color: #fff !important;
+  border-color: #007bff;
+  font-weight: bold;
+}
+.update-btn-download:hover {
+  background: #0056b3;
+}
+
+.update-btn-ignore {
+  background: #fff;
+  color: #6c757d;
+  border-color: #ccc;
+}
+.update-btn-ignore:hover {
+  background: #f5f5f5;
+}
+
+.update-btn-close {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 16px;
+  padding: 2px 6px;
+}
+.update-btn-close:hover {
+  color: #333;
+}
+
+.update-banner-version-info {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #6c757d;
+  text-align: right;
+}
+
+/* ===== [Phase 2] 버전 푸터 ===== */
+.version-footer {
+  margin-top: 20px;
+  padding: 8px 0;
+  text-align: right;
+  font-size: 11px;
+  color: #aaa;
+  border-top: 1px solid #eee;
+}
